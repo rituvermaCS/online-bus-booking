@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{% load static %}
+{% include 'css.html' %}	 
+		<title>Bus Booking</title>
+        <style>
+	.bg-primary{
+	    background-color:#320d6b!important;
+	}
+	.navbar-light .navbar-nav .nav-link{
+	color: white;
+	}
+	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav{
+    color: #ffc107;
+	}
+	.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover{
+	color: black;
+	background-color:yellow;
+	border-radius:3px;
+	}
+	.navbar-nav .nav-link {
+	padding-right: 0.6rem!important;
+	padding-left: 0.6rem!important;
+	font-size:14px;
+	}
+        </style>
+    </head>
+    <body>
+	{% include 'soft-menu.html' %}
+
+	<div class="container-fluid bg-success p-2">
+	<div class=""> 
+	<div class="col-md-12">
+	<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="#">Home</a></li>
+	<li class="breadcrumb-item active" aria-current="page">Bus Booking</li>
+	</ol>
+	</nav>
+	</div>
+	</div>
+	</div>
+	<div class="row col-md-12">
+	<div class="col-md-1">&nbsp;</div>
+	<div class="col-md-10  alert alert-secondary mt-5 mb-5">
+	<h4>User Details</h4>
+	<hr>
+	{% for msg in messages %}
+	<div class="alert alert-{{msg.tags}}">{{msg}}</div>
+	{% endfor %}
+	<form method="POST" action="{% url 'bus_booking' %}">
+	{% csrf_token %}
+	<div class="row">
+	<div class="col-md-4">
+	<div class="row">
+  <div class="col-md-6">
+  <div class="form-group">
+    <label for="exampleInputText1">Name</label>
+    <input type="text" name="booking_name" value="{{user.first_name}} {{user.last_name}}" class="form-control" id="exampleInputText1" placeholder="Name">
+  </div>
+  </div>
+  <div class="col-md-6">
+  <div class="form-group">
+    <label for="exampleInputText1">Email</label>
+    <input type="text" name="booking_email" value="{{user.email}}" class="form-control" id="exampleInputText1" placeholder="Email">
+  </div>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-md-6">
+  <div class="form-group">
+    <label for="exampleInputText1">Phone</label>
+    <input type="text" name="booking_phone" value="{{user.phone}}" class="form-control" id="exampleInputText1" placeholder="Phone">
+  </div>
+  </div>
+  <div class="col-md-6">
+  <div class="form-group">
+    <label for="exampleInputText1">Pin</label>
+    <input type="text" name="booking_pin" class="form-control" id="exampleInputText1" placeholder="Pin">
+  </div>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-md-6">
+  <div class="form-group">
+    <label for="exampleInputText1">From</label>
+    <input type="text" name="booking_bus_from" value="{{data.bus_from}}" class="form-control" id="exampleInputText1" placeholder="From">
+  </div>
+  </div>
+  <div class="col-md-6">
+  <div class="form-group">
+    <label for="exampleInputText1">To</label>
+    <input type="text" name="booking_bus_to" value="{{data.bus_to}}" class="form-control" id="exampleInputText1" placeholder="To">
+  </div>
+  </div>
+  </div>
+  <div class="col-md-12">
+  <div class="form-group">
+    <label for="exampleInputText1">Price</label>
+    <input type="text" name="booking_bus_price" value="{{data.bus_fare}}" class="form-control" id="exampleInputText1" placeholder="Price">
+  </div>
+  </div>
+  <div class="col-md-6">
+  <div class="form-group">
+    <label for="exampleInputText1">Gender :</label>
+    <select type="text" name="booking_gender">
+	<option>Select Gender</option>
+	<option>Male</option>
+	<option>Female</option>
+	</select>
+  </div>
+  </div>
+  <div class="col-md-12">
+  <div class="form-group">
+    <label for="exampleInputText1">Address</label>
+    <input type="text" name="booking_address" class="form-control" id="exampleInputText1" placeholder="Address">
+  <input type="date" name="today_date">
+  </div>
+  </div>
+  </div>
+    <div class=" col-md-8 alert alert-primary">
+	<div class="row">
+  {% for bus_rows in bus_no %}
+  <div class="col-md-2">
+  <div class="form-group">
+   <input type="checkbox" name="booking_seat_no[]" value="{{bus_rows}}"><a href="" class="btn btn-success btn-lg">{{bus_rows}}</a>
+  </div>
+  </div>
+  {% endfor %}
+  </div>
+  </div>
+  </div>
+<button type="submit" class="btn btn-primary">Book Now</button>
+</form>
+
+</div>
+	<div class="col-md-1">&nbsp;</div>
+{% include 'footer.html' %}
+{% include 'jscript.html' %}
+
+    </body>
+</html>

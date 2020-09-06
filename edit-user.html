@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{% load static %}
+{% include 'css.html' %}	 
+		<title>Add_user</title>
+        <style>
+	.bg-primary{
+	    background-color:#320d6b!important;
+	}
+	.navbar-light .navbar-nav .nav-link{
+	color: white;
+	}
+	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav{
+    color: #ffc107;
+	}
+	.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover{
+	color: black;
+	background-color:yellow;
+	border-radius:3px;
+	}
+	.navbar-nav .nav-link {
+	padding-right: 0.6rem!important;
+	padding-left: 0.6rem!important;
+	font-size:14px;
+	}
+        </style>
+    </head>
+    <body>
+	{% include 'soft-menu.html' %}
+
+	<div class="container-fluid bg-success p-2">
+	<div class=""> 
+	<div class="col-md-12">
+	<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="#">Home</a></li>
+	<li class="breadcrumb-item active" aria-current="page">Edit User</li>
+	</ol>
+	</nav>
+	</div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4 mt-5 mb-5">
+	<div class="alert alert-secondary p-5">
+	<h4>Update User</h4>
+	{{record}}
+	<hr>
+	{% for msg in messages %}
+	<div class="alert alert-{{msg.tags}}">{{msg}}</div>
+	{% endfor %}
+	<form method="POST" action="{% url 'update_user_record' %}">
+	{% csrf_token %}
+	{% for row in user_data %}
+  <div class="form-group">
+    <label for="exampleInputText1">First Name</label>
+    <input type="text" name="first_name" class="form-control" value="{{row.first_name}}">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputText1">Last Name</label>
+    <input type="text" name="last_name" class="form-control" value="{{row.last_name}}">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="email" name="email" class="form-control" value="{{row.email}}">
+	<input type="text" name="id" class="form-control" value="{{row.id}}">
+  </div>
+  {% endfor %}
+  <button type="submit" class="btn btn-dark">Update User</button>
+</form>
+</div>
+	</div>
+	<div class="col-md-4">&nbsp;</div>
+	</div>
+{% include 'footer.html' %}
+{% include 'jscript.html' %}
+
+    </body>
+</html>

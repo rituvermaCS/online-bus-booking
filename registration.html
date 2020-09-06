@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{% load static %}
+   {% include 'css.html' %}
+	   <title>Registration</title>
+        <style>
+	.bg-primary{
+	    background-color:#320d6b!important;
+	}
+	.navbar-light .navbar-nav .nav-link{
+	color: white;
+	}
+	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav{
+    color: #ffc107;
+	}
+	.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover{
+	color: #ffc107;
+	background-color:yellow;
+	border-radius:3px;
+	}
+	.navbar-nav .nav-link {
+	padding-right: 1.5rem!important;
+	padding-left: 1.5rem!important;
+	font-size:14px;
+	}
+	.alert-error{
+	   background-color:red;
+	   color:white;
+	}
+        </style>
+    </head>
+    <body>
+	{% include 'menu.html' %}
+
+	<div class="container-fluid bg-success p-2">
+	<div class=""> 
+	<div class="col-md-12">
+	<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="#">Home</a></li>
+	<li class="breadcrumb-item active" aria-current="page">Registration</li>
+	</ol>
+	</nav>
+	</div>
+	</div>
+	</div>
+	<div class="container">
+	<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6 mt-3 mb-3">
+	<div class="container alert alert-primary p-5">
+	<h4>Register</h4>
+	<hr>
+	<form action="{% url 'registration' %}" method="POST">
+	{% for msg in messages %}
+	<div class="alert alert-{{msg.tags}}">{{msg}}</div>
+	{% endfor %}
+	{% csrf_token %}
+	<div class="form-group">
+    <label for="exampleInputText1">First Name</label>
+    <input type="text" name="first_name" class="form-control" id="exampleInputText1">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputText1">Last Name</label>
+    <input type="text" name="last_name" class="form-control" id="exampleInputText1">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputText1">UserName</label>
+    <input type="text" name="username" class="form-control" id="exampleInputText1">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputText1">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Confirm Password</label>
+    <input type="password" name="cpassword" class="form-control" id="exampleInputPassword1">
+  </div>
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
+</div>
+	</div>
+	<div class="col-md-3"></div>
+	</div>
+	</div>
+
+{% include 'footer.html' %}	
+{% include 'jscript.html' %}
+    </body>
+</html>

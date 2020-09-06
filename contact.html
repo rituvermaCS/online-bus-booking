@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{% load static %}
+{% include 'css.html' %}	     
+		<title>Contact</title>
+        <style>
+	.bg-primary{
+	    background-color:#320d6b!important;
+	}
+	.navbar-light .navbar-nav .nav-link{
+	color: white;
+	}
+	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav{
+    color: #ffc107;
+	}
+	.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover{
+	color: #ffc107;
+	background-color:yellow;
+	border-radius:3px;
+	}
+	.navbar-nav .nav-link {
+	padding-right: 1.5rem!important;
+	padding-left: 1.5rem!important;
+	font-size:14px;
+	}
+        </style>
+    </head>
+    <body>
+	{% include 'menu.html' %}
+
+	<div class="container-fluid bg-success p-2">
+	<div class=""> 
+	<div class="col-md-12">
+	<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="#">Home</a></li>
+	<li class="breadcrumb-item active" aria-current="page">Contact</li>
+	</ol>
+	</nav>
+	</div>
+	</div>
+	</div>
+	<div class="container mt-3 mb-3">
+	<div class="row">
+	<div class="col-md-4">
+	<p>Address:
+	<hr>
+	Janpriya Complex Kursi Rd, Tehri Puliya, Phase-II, Aliganj, Lucknow, U.P., 226016
+	<hr>
+	Phone:
+	<hr>
+	91+ 9839434821
+	<hr>
+	Email:
+	<hr>
+	info@analyzeinfotech.in 
+	<p>
+	analyzelko@gmail.com</p>
+	</p>
+	</div>
+	<div class="col-md-4">
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.8395161197955!2d80.95418711436912!3d26.90858788312937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3999580046c00001%3A0x417daf56e9110066!2sAnalyze%20Infotech!5e0!3m2!1sen!2sin!4v1582015498075!5m2!1sen!2sin" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+	</div>
+	<div class="col-md-4">
+	<form method="POST" action="{% url 'contact' %}">
+	{% for msg in messages %}
+	<div class="alert alert-{{msg.tags}}">{{msg}}</div>
+	{% endfor %}
+	{% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputText1">Name</label>
+    <input type="text" name="name" class="form-control" id="exampleInputText1">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Phone</label>
+    <input type="text" name="phone" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputText1">Subject</label>
+    <input type="text" name="subject" class="form-control" id="exampleInputText1">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputText1">Message</label>
+    <input type="text" name="msg" class="form-control" id="exampleInputText1">
+  </div>
+  <button type="submit" class="btn btn-dark">Send</button>
+    <button type="reset" class="btn btn-dark">Cancel</button>
+</form>
+<div class="container" style="height:10px"></div>
+	</div>
+	</div>
+	</div>
+{% include 'footer.html' %}
+{% include 'jscript.html' %}
+    </body>
+</html>

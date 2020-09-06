@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+      <a class="navbar-brand" href="#">Online Bus Booking</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	  {% if user.is_superuser %}
+	     <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'dashboard' %}">Dashboard</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+			Manage Bus
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" href="{% url 'add_bus' %}">Add Bus</a>
+			<a class="dropdown-item" href="{% url 'view_bus' %}">View Bus</a>
+			</div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+			Manage News
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" href="{% url 'add_news' %}">Add News</a>
+			<a class="dropdown-item" href="{% url 'view_news' %}">View News</a>
+			</div>
+          </li>
+		  <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+			Manage Users
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" href="{% url 'add_user' %}">Add Users</a>
+			<a class="dropdown-item" href="{% url 'view_user' %}">View Users</a>
+			</div>
+          </li>
+		  <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+			Manage Booking
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" href="{% url 'check_bus_details' %}">Bus Booking</a>
+			<a class="dropdown-item" href="{% url 'view_booked_bus' %}">View Bus Boking</a>
+			</div>
+          </li>
+		  <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'manage_feedback' %}">Manage FeedBack</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'manage_contact' %}">Manage Contact </a>
+          </li>
+		  <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'logout'%}">Logout</a>
+          </li>
+        </ul>
+	  {% else %}
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'about' %}">AboutUs</a>
+          </li>
+		  <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'feedback' %}">FeedBack</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'contact' %}">Contact Us</a>
+          </li>
+		  {% if user.is_superuser %}
+		  <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'dashboard' %}"><strong>{{user.username}}</strong> &nbsp;</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'logout'%}">Logout</a>
+          </li>
+		  {% else %}
+        <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'registration' %}">Registration</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+          </li>
+		{% endif %}
+		</ul>
+		  {% endif %}
+              </div>
+    </nav>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{% load static %}
+{% include 'css.html' %}	 
+		<title>dashboard</title>
+        <style>
+	.bg-primary{
+		background-color:#320d6b!important;
+	}
+	.navbar-light .navbar-nav .nav-link {
+    color: white;
+	}
+	.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+		color: #ffc107;
+	}
+	.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+		color: black;
+		background-color:yellow;
+		border-radius:3px;
+	}
+	.navbar-nav .nav-link {
+	padding-right: 0.6rem!important;
+	padding-left: 0.6rem!important;
+	font-size:14px;
+	}
+        </style>
+    </head>
+    <body>
+	{% include 'soft-menu.html' %}
+
+	<div class="container-fluid bg-success p-2">
+	<div class=""> 
+	<div class="col-md-12">
+	<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+	<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+	</ol>
+	</nav>
+	</div>
+	</div>
+	</div>
+	<div class="container mt-5">
+	<div class="row">
+	{% if user.is_superuser %}
+	<div class="col-md-2 card text-white bg-primary mb-5 p-2" style="max-width: 16rem;">
+	<a href="{% url 'manage_contact' %}">
+  <div class="card-header text-center">Total Contact</div>
+  <div class="card-body">
+  <h4 class="card-title text-center">{{total_contacts}}</h4>
+  <h5 class="card-title text-center"><i class="fa fa-users" style="font-size:120px;"></i></h5>
+    <p class="card-text"></p>
+  </div>
+  </a>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-2 card text-white bg-primary mb-5 p-2" style="max-width: 16rem;">
+<a href="{% url 'manage_feedback' %}">
+  <div class="card-header text-center">Total FeedBack</div>
+  <div class="card-body">
+  <h4 class="card-title text-center">{{total_feedbacks}}</h4>
+  <h5 class="card-title text-center"><i class="fa fa-envelope" style="font-size:120px;"></i></h5>
+    <p class="card-text"></p>
+  </div>
+  </a>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-2 card text-white bg-primary mb-5 p-2" style="max-width: 16rem;">
+<a href="{% url 'view_user' %}">
+  <div class="card-header text-center">Total Users</div>
+  <div class="card-body">
+  <h4 class="card-title text-center">{{total_user}}</h4>
+  <h5 class="card-title text-center"><i class="fa fa-user" style="font-size:120px;"></i></h5>
+    <p class="card-text"></p>
+  </div>
+  </a>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-2 card text-white bg-primary mb-5 p-2" style="max-width: 16rem;">
+<a href="{% url 'view_booked_bus' %}">
+  <div class="card-header text-center">Total Booking</div>
+  <div class="card-body">
+  <h4 class="card-title text-center">{{total_bookings}}</h4>
+  <h5 class="card-title text-center"><i class="fa fa-bus" style="font-size:120px;"></i></h5>
+    <p class="card-text"></p>
+  </div>
+  </a>
+</div>
+{% else %}
+<div class="col-md-2 card text-white bg-primary mb-5 p-2" style="max-width: 16rem;">
+<a href="{% url 'update_profile'%}">
+  <div class="card-header text-center">Update Profile</div>
+  <div class="card-body">
+  <h4 class="card-title text-center"></h4>
+  <h5 class="card-title text-center"><i class="fa fa-user" style="font-size:120px;"></i></h5>
+    <p class="card-text"></p>
+  </div>
+  </a>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-2 card text-white bg-primary mb-5 p-2" style="max-width: 16rem;">
+<a href="{% url 'check_bus_details'%}">
+  <div class="card-header text-center">Check Bus Details</div>
+  <div class="card-body">
+  <h4 class="card-title text-center"></h4>
+  <h5 class="card-title text-center"><i class="fa fa-edit" style="font-size:120px;"></i></h5>
+    <p class="card-text"></p>
+  </div>
+  </a>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-2 card text-white bg-primary mb-5 p-2" style="max-width: 16rem;">
+<a href="{% url 'bus_booking' %}">
+  <div class="card-header text-center">Bus Booking</div>
+  <div class="card-body">
+  <h4 class="card-title text-center"></h4>
+  <h5 class="card-title text-center"><i class="fa fa-bus" style="font-size:120px;"></i></h5>
+    <p class="card-text"></p>
+  </div>
+  </a>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-2 card text-white bg-primary mb-5 p-2" style="max-width: 16rem;">
+<a href="{% url 'change_password'%}">
+  <div class="card-header text-center">Change Password</div>
+  <div class="card-body">
+  <h4 class="card-title text-center"></h4>
+  <h5 class="card-title text-center"><i class="fa fa-lock" style="font-size:120px;"></i></h5>
+    <p class="card-text"></p>
+  </div>
+  </a>
+</div>
+{% endif %}
+	</div>
+	</div>
+{% include 'footer.html' %}
+{% include 'jscript.html' %}
+
+    </body>
+</html>
